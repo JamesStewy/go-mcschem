@@ -7,6 +7,7 @@ import (
 	"io"
 )
 
+// Creates a new Schematic.
 func New(width, length, height int) *Schem {
 	return &Schem{
 		Width:        uint16(width),
@@ -20,12 +21,16 @@ func New(width, length, height int) *Schem {
 	}
 }
 
+// Sets the block at the provided co-ordinates.
+// Panics if an ordinate is out of range.
 func (s *Schem) SetBlock(x, y, z int, b Block) {
 	i := s.index(x, y, z)
 	s.Blocks[i] = b.Id
 	s.Data[i] = b.Data
 }
 
+// Marshals schematic to NBT format.
+// Set gz=true to use gzip compression.
 func (s *Schem) Marshal(w io.Writer, gz bool) error {
 	if gz {
 		wgz := gzip.NewWriter(w)
