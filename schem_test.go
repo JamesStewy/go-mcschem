@@ -37,17 +37,17 @@ func TestMarshalUnmarshal(t *testing.T) {
 func TestBlock(t *testing.T) {
 	s := loadSchem(bytes.NewBuffer(rt_test_schem), t)
 	for _, test := range block_test_data {
-		block := s.Block(test.X,test.Y,test.Z)
+		block := s.Block(test.X, test.Y, test.Z)
 		if block.Id != test.Block.Id || block.Data != test.Block.Data {
-			t.Fatalf("For x=%d, y=%d, z=%d Have: Id=%d Data=%d Want: Id=%d Data=%d\n", test.X,test.Y,test.Z ,block.Id, block.Data, test.Block.Id, test.Block.Data)
+			t.Fatalf("For x=%d, y=%d, z=%d Have: Id=%d Data=%d Want: Id=%d Data=%d\n", test.X, test.Y, test.Z, block.Id, block.Data, test.Block.Id, test.Block.Data)
 		}
 	}
 }
 
 type blockTest struct {
-	X int
-	Y int
-	Z int
+	X     int
+	Y     int
+	Z     int
 	Block mcschem.Block
 }
 
